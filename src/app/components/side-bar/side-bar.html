@@ -1,0 +1,46 @@
+<!-- Skip navigation -->
+<a class="sr-only" href="#main-content"> Skip to the main content </a>
+
+<!-- Sidebar Backdrop (Mobile) -->
+@if (sidebarToggle()) {
+<div
+  class="fixed inset-0 z-[99] bg-gray-900/50 backdrop-blur-xs xl:hidden"
+  aria-hidden="true"
+  (click)="closeSidebar()"
+></div>
+}
+
+<!-- Sidebar -->
+<aside
+  [class.translate-x-0]="sidebarToggle()"
+  [class.xl:w-22.5]="sidebarToggle()"
+  [class.-translate-x-full]="!sidebarToggle()"
+  class="sidebar fixed top-0 left-0 z-[9999] flex h-screen w-72.5 flex-col border-r border-gray-200 bg-white px-5 transition-all duration-300 xl:static xl:translate-x-0 rtl:right-0 rtl:left-auto rtl:border-r-0 rtl:border-l dark:border-gray-800 dark:bg-black"
+  (click)="onSidebarClick($event)"
+  aria-label="Sidebar navigation"
+>
+  <!-- Sidebar Header -->
+  <div class="sidebar-header">
+    <!-- Your sidebar header goes here -->
+  </div>
+
+  <div
+    class="no-scrollbar flex flex-1 flex-col overflow-y-auto duration-300 ease-linear"
+  >
+    <!-- Sidebar Menu -->
+    <nav aria-label="Sidebar navigation">
+      <!-- Main Nav Group -->
+      <!-- Add your Angular navigation links here -->
+
+      <!-- Others Nav Group -->
+      <!-- Add your Angular navigation links here -->
+    </nav>
+  </div>
+
+  <!-- Sidebar Widget -->
+  @if (!sidebarToggle()) {
+  <div class="pt-1 pb-4">
+    <!-- Your sidebar widget goes here -->
+  </div>
+  }
+</aside>

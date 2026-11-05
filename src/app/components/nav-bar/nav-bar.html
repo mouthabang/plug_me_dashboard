@@ -17,7 +17,6 @@
         [attr.aria-expanded]="sidebarToggle()"
         class="group/button relative inline-flex size-10 shrink-0 items-center justify-center rounded-[10px] border border-gray-300 bg-transparent text-gray-500 shadow-theme-xs transition-all select-none hover:bg-gray-50 hover:text-gray-800 focus-visible:ring-3 focus-visible:ring-gray-300/50 focus-visible:outline-hidden active:translate-y-px lg:size-11 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700/50 dark:hover:text-white"
       >
-        <!-- Close Icon: Mobile Sidebar Open -->
         @if (sidebarToggle() && isMobile()) {
         <svg
           class="size-6"
@@ -34,7 +33,6 @@
           <path d="M18 6L6 18M6 6l12 12" />
         </svg>
         } @else {
-        <!-- Menu Icon -->
         <svg
           class="size-auto! rtl:-scale-x-100"
           width="16"
@@ -57,13 +55,12 @@
       <a href="/" class="xl:hidden">
         <img
           class="h-8 w-38.5 dark:hidden"
-          src="/images/logo/logo.svg"
+          src="assets/images/plugme_slogan.jpg"
           alt="PlugMe Logo"
         />
-
         <img
           class="hidden h-8 w-38.5 dark:block"
-          src="/images/logo/logo-dark.svg"
+          src="assets/images/plugme_slogan.jpg"
           alt="PlugMe Logo"
         />
       </a>
@@ -72,7 +69,7 @@
       <button
         type="button"
         (click)="toggleApplicationMenu()"
-        [attr.aria-expanded]="isApplicationMenuOpen()"
+        [attr.aria-expanded]="applicationMenuOpen()"
         aria-label="Toggle application menu"
         class="inline-flex size-10 shrink-0 items-center justify-center rounded-[10px] border-none bg-transparent text-gray-700 transition-all select-none hover:bg-gray-50 hover:text-gray-800 focus-visible:ring-3 focus-visible:ring-gray-300/50 focus-visible:outline-hidden xl:hidden dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700/50 dark:hover:text-white"
       >
@@ -98,17 +95,13 @@
         <form (submit)="onSearchSubmit($event)">
           <div class="xl:w-107.5">
             <div
-              data-slot="input-group"
               role="group"
-              class="group/input-group relative flex h-11 w-full min-w-0 items-center rounded-[10px] border border-gray-200 bg-transparent shadow-theme-xs outline-hidden transition-colors has-[[data-slot=input-group-control]:focus]:border-brand-300 has-[[data-slot=input-group-control]:focus]:ring-3 has-[[data-slot=input-group-control]:focus]:ring-brand-500/20 has-[[data-slot=input-group-control]:focus-visible]:border-brand-300 has-[[data-slot=input-group-control]:focus-visible]:ring-3 has-[[data-slot=input-group-control]:focus-visible]:ring-brand-500/20 dark:border-gray-800 dark:bg-white/3 dark:has-[[data-slot=input-group-control]:focus]:border-brand-500/40 dark:has-[[data-slot=input-group-control]:focus-visible]:border-brand-500/40"
+              class="group/input-group relative flex h-11 w-full min-w-0 items-center rounded-[10px] border border-gray-200 bg-transparent shadow-theme-xs outline-hidden transition-colors has-[[data-slot=input-group-control]:focus]:border-brand-300 has-[[data-slot=input-group-control]:focus]:ring-3 has-[[data-slot=input-group-control]:focus]:ring-brand-500/20 dark:border-gray-800 dark:bg-white/3"
             >
-              <!-- Search Icon -->
               <div
                 role="group"
-                data-slot="input-group-addon"
-                data-align="inline-start"
-                class="flex h-auto cursor-text items-center justify-center gap-2 py-1.5 ps-3.5 text-sm font-medium text-gray-500 select-none dark:text-gray-400"
                 (click)="focusSearch()"
+                class="flex h-auto cursor-text items-center justify-center gap-2 py-1.5 ps-3.5 text-sm font-medium text-gray-500 select-none dark:text-gray-400"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -128,20 +121,16 @@
                 </svg>
               </div>
 
-              <!-- Search Input -->
               <input
                 #searchInput
                 data-slot="input-group-control"
                 type="text"
                 placeholder="Search or type command..."
-                class="h-full flex-1 rounded-none border-0 bg-transparent px-2 text-sm text-gray-800 shadow-none ring-0 outline-hidden placeholder:text-gray-400 focus:border-transparent focus:ring-0 focus:outline-hidden focus-visible:border-transparent focus-visible:ring-0 dark:text-white/90 dark:placeholder:text-white/30"
+                class="h-full flex-1 rounded-none border-0 bg-transparent px-2 text-sm text-gray-800 shadow-none ring-0 outline-hidden placeholder:text-gray-400 focus:border-transparent focus:ring-0 focus:outline-hidden dark:text-white/90 dark:placeholder:text-white/30"
               />
 
-              <!-- Keyboard Shortcut -->
               <div
                 role="group"
-                data-slot="input-group-addon"
-                data-align="inline-end"
                 class="flex h-auto cursor-text items-center justify-center gap-2 py-1.5 pe-3.5 text-sm font-medium text-gray-500 select-none dark:text-gray-400"
               >
                 <button
@@ -150,8 +139,7 @@
                   aria-label="Focus search"
                   class="group/badge inline-flex h-5.5 w-fit shrink-0 cursor-pointer items-center justify-center gap-0.5 rounded-lg border border-gray-200 bg-gray-50 px-1.75 py-[4.5px] text-xs font-medium tracking-[-0.2px] whitespace-nowrap text-gray-500 shadow-none transition-colors select-none dark:border-gray-800 dark:bg-white/3 dark:text-gray-400"
                 >
-                  <span>⌘</span>
-                  <span>K</span>
+                  <span>⌘</span><span>K</span>
                 </button>
               </div>
             </div>
@@ -163,19 +151,509 @@
     <!-- Right Side Content -->
     <div
       class="w-full items-center justify-between gap-4 px-5 py-4 shadow-theme-md xl:flex xl:justify-end xl:px-0 xl:shadow-none"
-      [class.flex]="isApplicationMenuOpen()"
-      [class.hidden]="!isApplicationMenuOpen()"
+      [class.flex]="applicationMenuOpen()"
+      [class.hidden]="!applicationMenuOpen()"
     >
       <div class="flex items-center gap-2 2xsm:gap-3">
-        <!-- Theme Toggler -->
-        <!-- <app-theme-toggler /> -->
-
         <!-- Notification Dropdown -->
-        <!-- <app-notification-dropdown /> -->
+        <div class="relative">
+          <button
+            type="button"
+            (click)="toggleNotifications()"
+            [attr.aria-expanded]="notificationsOpen()"
+            class="relative inline-flex size-11 shrink-0 items-center justify-center rounded-[10px] border border-gray-300 bg-transparent text-gray-700 shadow-theme-xs transition-all select-none hover:bg-gray-50 hover:text-gray-800 focus-visible:ring-3 focus-visible:ring-gray-300/50 focus-visible:outline-hidden active:translate-y-px dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700/50 dark:hover:text-white"
+            aria-label="Toggle notifications"
+          >
+            @if (notifying()) {
+            <span
+              class="absolute inset-e-0 -top-0.5 z-10 flex h-2 w-2 translate-x-1/2 rounded-full bg-orange-400 rtl:-inset-e-1.5"
+            >
+              <span
+                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75"
+              ></span>
+            </span>
+            }
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              class="size-auto!"
+            >
+              <path
+                d="M9.861 1.876v1.25m0 0a5.625 5.625 0 015.625 5.625v6.041H4.236V8.751a5.625 5.625 0 015.625-5.625zm-1.25 14.166h2.5m-7.917-2.5h13.334"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          @if (notificationsOpen()) {
+          <div
+            class="fixed z-50 flex w-87.5 max-w-[calc(100vw-1rem)] flex-col gap-1 overflow-hidden rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg outline-none sm:w-90.25 dark:border-gray-800 dark:bg-[#1E2635]"
+          >
+            <div class="flex items-center justify-between pb-3">
+              <h5
+                class="text-title-sm font-semibold text-gray-800 dark:text-gray-200"
+              >
+                Notification
+              </h5>
+              <button
+                type="button"
+                (click)="notificationsOpen.set(false)"
+                class="inline-flex size-8 shrink-0 items-center justify-center rounded-lg border-none bg-transparent text-gray-700 transition-all hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700/50 dark:hover:text-white"
+                aria-label="Close notifications"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="size-5"
+                >
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="-mx-3 my-0 h-px bg-gray-100 dark:bg-gray-700"></div>
+
+            <div
+              class="flex custom-scrollbar h-96 flex-col overflow-y-auto pe-2"
+            >
+              <!-- Item 1 -->
+              <a
+                href="javascript:void(0)"
+                class="group/dropdown-menu-item flex items-start gap-3 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-white/5"
+              >
+                <div class="relative flex size-10 shrink-0 select-none">
+                  <img
+                    src="/assets/images/plugme_logo.webp"
+                    alt="Terry Franci"
+                    class="aspect-square size-full rounded-full object-cover"
+                  />
+                  <span
+                    class="absolute top-0 right-0 z-10 size-2.5 rounded-full bg-green-500 ring-2 ring-white select-none dark:ring-black"
+                  ></span>
+                </div>
+                <span class="block flex-1 text-start">
+                  <span
+                    class="mb-1.5 block space-x-1 text-sm text-gray-500 dark:text-gray-400"
+                  >
+                    <span class="font-medium text-gray-800 dark:text-white/90"
+                      >Terry Franci</span
+                    >
+                    <span>requests permission to change</span>
+                    <span class="font-medium text-gray-800 dark:text-white/90"
+                      >Project - Nganter App</span
+                    >
+                  </span>
+                  <span
+                    class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
+                  >
+                    <span>Project</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="size-2 text-gray-400 dark:text-gray-500"
+                    >
+                      <circle cx="12" cy="12" r="1" />
+                    </svg>
+                    <span>5 min ago</span>
+                  </span>
+                </span>
+              </a>
+              <div
+                class="my-0.5 h-px bg-gray-100 last-of-type:hidden dark:bg-gray-700"
+              ></div>
+
+              <!-- Item 2 -->
+              <a
+                href="javascript:void(0)"
+                class="group/dropdown-menu-item flex items-start gap-3 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-white/5"
+              >
+                <div class="relative flex size-10 shrink-0 select-none">
+                  <img
+                    src="/assets/images/plugme_logo.webp"
+                    alt="Alena Franci"
+                    class="aspect-square size-full rounded-full object-cover"
+                  />
+                  <span
+                    class="absolute top-0 right-0 z-10 size-2.5 rounded-full bg-green-500 ring-2 ring-white select-none dark:ring-black"
+                  ></span>
+                </div>
+                <span class="block flex-1 text-start">
+                  <span
+                    class="mb-1.5 block space-x-1 text-sm text-gray-500 dark:text-gray-400"
+                  >
+                    <span class="font-medium text-gray-800 dark:text-white/90"
+                      >Alena Franci</span
+                    >
+                    <span>requests permission to change</span>
+                    <span class="font-medium text-gray-800 dark:text-white/90"
+                      >Project - Nganter App</span
+                    >
+                  </span>
+                  <span
+                    class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
+                  >
+                    <span>Project</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="size-2 text-gray-400 dark:text-gray-500"
+                    >
+                      <circle cx="12" cy="12" r="1" />
+                    </svg>
+                    <span>8 min ago</span>
+                  </span>
+                </span>
+              </a>
+              <div
+                class="my-0.5 h-px bg-gray-100 last-of-type:hidden dark:bg-gray-700"
+              ></div>
+
+              <!-- Item 3 -->
+              <a
+                href="javascript:void(0)"
+                class="group/dropdown-menu-item flex items-start gap-3 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-white/5"
+              >
+                <div class="relative flex size-10 shrink-0 select-none">
+                  <img
+                    src="/assets/images/plugme_logo.webp"
+                    alt="Jocelyn Kenter"
+                    class="aspect-square size-full rounded-full object-cover"
+                  />
+                  <span
+                    class="absolute top-0 right-0 z-10 size-2.5 rounded-full bg-green-500 ring-2 ring-white select-none dark:ring-black"
+                  ></span>
+                </div>
+                <span class="block flex-1 text-start">
+                  <span
+                    class="mb-1.5 block space-x-1 text-sm text-gray-500 dark:text-gray-400"
+                  >
+                    <span class="font-medium text-gray-800 dark:text-white/90"
+                      >Jocelyn Kenter</span
+                    >
+                    <span>requests permission to change</span>
+                    <span class="font-medium text-gray-800 dark:text-white/90"
+                      >Project - Nganter App</span
+                    >
+                  </span>
+                  <span
+                    class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
+                  >
+                    <span>Project</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="size-2 text-gray-400 dark:text-gray-500"
+                    >
+                      <circle cx="12" cy="12" r="1" />
+                    </svg>
+                    <span>15 min ago</span>
+                  </span>
+                </span>
+              </a>
+              <div
+                class="my-0.5 h-px bg-gray-100 last-of-type:hidden dark:bg-gray-700"
+              ></div>
+
+              <!-- Item 4 -->
+              <a
+                href="javascript:void(0)"
+                class="group/dropdown-menu-item flex items-start gap-3 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-white/5"
+              >
+                <div class="relative flex size-10 shrink-0 select-none">
+                  <img
+                    src="/assets/images/plugme_logo.webp"
+                    alt="Brandon Philips"
+                    class="aspect-square size-full rounded-full object-cover"
+                  />
+                  <span
+                    class="absolute top-0 right-0 z-10 size-2.5 rounded-full bg-red-500 ring-2 ring-white select-none dark:ring-black"
+                  ></span>
+                </div>
+                <span class="block flex-1 text-start">
+                  <span
+                    class="mb-1.5 block space-x-1 text-sm text-gray-500 dark:text-gray-400"
+                  >
+                    <span class="font-medium text-gray-800 dark:text-white/90"
+                      >Brandon Philips</span
+                    >
+                    <span>requests permission to change</span>
+                    <span class="font-medium text-gray-800 dark:text-white/90"
+                      >Project - Nganter App</span
+                    >
+                  </span>
+                  <span
+                    class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
+                  >
+                    <span>Project</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="size-2 text-gray-400 dark:text-gray-500"
+                    >
+                      <circle cx="12" cy="12" r="1" />
+                    </svg>
+                    <span>1 hr ago</span>
+                  </span>
+                </span>
+              </a>
+            </div>
+
+            <a
+              href="index.html"
+              (click)="notificationsOpen.set(false)"
+              class="mt-3 inline-flex h-10 w-full items-center justify-center rounded-[10px] border border-gray-300 bg-transparent px-4 py-2.5 text-sm font-medium text-gray-700 shadow-theme-xs transition-all select-none hover:bg-gray-50 hover:text-gray-800 focus-visible:ring-3 focus-visible:ring-gray-300/50 focus-visible:outline-hidden active:translate-y-px dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700/50 dark:hover:text-white"
+            >
+              View All Notifications
+            </a>
+          </div>
+          }
+        </div>
       </div>
 
       <!-- User Dropdown -->
-      <!-- <app-user-dropdown /> -->
+      <div class="relative">
+        <button
+          type="button"
+          aria-haspopup="menu"
+          [attr.aria-expanded]="userMenuOpen()"
+          aria-controls="user-menu"
+          aria-label="User menu"
+          (click)="toggleUserMenu()"
+          class="dropdown-toggle flex items-center text-gray-700 dark:text-gray-400"
+        >
+          <span class="me-3 h-11 w-11 overflow-hidden rounded-lg">
+            <img
+              src="/assets/images/plugme_logo.webp"
+              alt="User"
+              class="size-11"
+            />
+          </span>
+          <span class="me-1 block text-sm font-medium">Musharof</span>
+          <svg
+            class="size-5 text-gray-500 transition-transform duration-200 dark:text-gray-400"
+            [class.rotate-180]="userMenuOpen()"
+            [class.rotate-0]="!userMenuOpen()"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.792 7.396L10 12.604l5.208-5.208"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+        @if (userMenuOpen()) {
+        <div
+          id="user-menu"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="user-menu-button"
+          class="fixed z-50 flex w-65 flex-col gap-1 rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg outline-none dark:border-gray-800 dark:bg-[#1E2635]"
+        >
+          <div class="px-3 py-2">
+            <span
+              class="block text-sm font-medium text-gray-700 dark:text-gray-400"
+              >Musharof Chowdhury</span
+            >
+            <span class="mt-0.5 block text-xs text-gray-500 dark:text-gray-400"
+              >randomuser@pimjo.com</span
+            >
+          </div>
+
+          <div class="-mx-3 my-1.5 h-px bg-gray-100 dark:bg-gray-700"></div>
+
+          <!-- Edit Profile -->
+          <a
+            href="profile.html"
+            role="menuitem"
+            class="group/dropdown-menu-item relative flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 outline-hidden transition-colors duration-200 select-none hover:bg-gray-100 hover:text-gray-700 focus:bg-gray-100 focus:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300 dark:focus:bg-white/5 dark:focus:text-gray-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="size-6 text-gray-500 group-hover/dropdown-menu-item:text-gray-700 dark:text-gray-400 dark:group-hover/dropdown-menu-item:text-gray-300"
+            >
+              <path
+                d="M17.775 19.107v-.261a4.5 4.5 0 00-4.5-4.5h-2.55a4.5 4.5 0 00-4.5 4.5v.261M21.25 12a9.25 9.25 0 11-18.5 0 9.25 9.25 0 0118.5 0zm-6.483-2.732a2.768 2.768 0 11-5.536 0 2.768 2.768 0 015.536 0z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>Edit profile</span>
+          </a>
+
+          <!-- Account Settings -->
+          <a
+            href="profile.html"
+            role="menuitem"
+            class="group/dropdown-menu-item relative flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 outline-hidden transition-colors duration-200 select-none hover:bg-gray-100 hover:text-gray-700 focus:bg-gray-100 focus:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300 dark:focus:bg-white/5 dark:focus:text-gray-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="size-6 text-gray-500 group-hover/dropdown-menu-item:text-gray-700 dark:text-gray-400 dark:group-hover/dropdown-menu-item:text-gray-300"
+            >
+              <path
+                d="M6.775 5.52a1.484 1.484 0 00-2.028.542L3.231 8.688c-.41.71-.166 1.617.543 2.027.99.571.99 1.999 0 2.57a1.484 1.484 0 00-.543 2.027l1.516 2.626c.41.71 1.318.953 2.028.543A1.484 1.484 0 019 19.766c0 .82.664 1.484 1.484 1.484h3.032c.82 0 1.484-.664 1.484-1.484a1.484 1.484 0 012.225-1.285c.71.41 1.617.167 2.027-.543l1.516-2.626c.41-.71.167-1.617-.543-2.027a1.484 1.484 0 010-2.57c.71-.41.953-1.317.543-2.027l-1.516-2.626a1.484 1.484 0 00-2.027-.543 1.483 1.483 0 01-2.225-1.285c0-.82-.664-1.484-1.484-1.484h-3.032c-.82 0-1.484.664-1.484 1.484a1.484 1.484 0 01-2.226 1.285z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M15.085 12a3.085 3.085 0 11-6.17 0 3.085 3.085 0 016.17 0z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>Account settings</span>
+          </a>
+
+          <!-- Support -->
+          <a
+            href="profile.html"
+            role="menuitem"
+            class="group/dropdown-menu-item relative flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 outline-hidden transition-colors duration-200 select-none hover:bg-gray-100 hover:text-gray-700 focus:bg-gray-100 focus:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300 dark:focus:bg-white/5 dark:focus:text-gray-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="size-6 text-gray-500 group-hover/dropdown-menu-item:text-gray-700 dark:text-gray-400 dark:group-hover/dropdown-menu-item:text-gray-300"
+            >
+              <path
+                d="M12 8.67h0"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M12 11.215v4.224M21.25 12a9.25 9.25 0 11-18.5 0 9.25 9.25 0 0118.5 0z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>Support</span>
+          </a>
+
+          <!-- Language (simplified - no nested submenu) -->
+          <a
+            href="javascript:void(0)"
+            role="menuitem"
+            class="group/dropdown-menu-item relative flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 outline-hidden transition-colors duration-200 select-none hover:bg-gray-100 hover:text-gray-700 focus:bg-gray-100 focus:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300 dark:focus:bg-white/5 dark:focus:text-gray-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="size-6 text-gray-500 group-hover/dropdown-menu-item:text-gray-700 dark:text-gray-400 dark:group-hover/dropdown-menu-item:text-gray-300"
+            >
+              <path
+                d="M12.001 2.75a9.25 9.25 0 019.25 9.25A9.25 9.25 0 0112 21.25m0-18.5A9.25 9.25 0 002.751 12a9.25 9.25 0 009.25 9.25m0-18.5c2.209 0 4 4.141 4 9.25 0 5.107-1.791 9.25-4 9.25m0-18.5c-2.209 0-3.999 4.141-3.999 9.25 0 5.107 1.79 9.25 3.999 9.25M3.246 9h17.508M3.246 15h17.508"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>Language</span>
+          </a>
+
+          <div class="-mx-3 my-1.5 h-px bg-gray-100 dark:bg-gray-700"></div>
+
+          <!-- Sign Out -->
+          <a
+            href="signin.html"
+            role="menuitem"
+            class="group/dropdown-menu-item relative flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-500 outline-hidden transition-colors duration-200 select-none hover:bg-red-50 hover:text-red-600 focus:bg-red-50 focus:text-red-600 dark:text-red-400 dark:hover:bg-red-500/10 dark:hover:text-red-400 dark:focus:bg-red-500/10 dark:focus:text-red-400"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              class="size-5 text-red-500 dark:text-red-400"
+            >
+              <path
+                d="M4 12h7.75M8 8l-3.998 4 3.997 4M9.75 4.996V4.25a1.5 1.5 0 011.5-1.5h6a1.5 1.5 0 011.5 1.5v15.5a1.5 1.5 0 01-1.5 1.5h-6a1.5 1.5 0 01-1.5-1.5V19"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span>Sign out</span>
+          </a>
+        </div>
+        }
+      </div>
     </div>
   </div>
 </header>

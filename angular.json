@@ -30,14 +30,8 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss",
-              "public/assets/css/style.css"
-
-            ],
-            "scripts": [
-             "public/assets/js/index.js"
-            ]
+            "styles": ["src/styles.scss", "public/assets/css/style.css"],
+            "scripts": ["public/assets/js/index.js"]
           },
           "configurations": {
             "production": {

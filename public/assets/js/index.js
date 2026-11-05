@@ -1,18 +1,14 @@
 import "dropzone/dist/dropzone.css";
 import "flatpickr/dist/flatpickr.min.css";
 import "jsvectormap/dist/jsvectormap.min.css";
-//import  "../../css/style.css";//"../assets/css/style.css";
  
 import collapse from "@alpinejs/collapse";
 import persist from "@alpinejs/persist";
 import Alpine from "alpinejs";
 import Dropzone from "dropzone";
 import flatpickr from "flatpickr";
-//import { setupI18n } from "./i18n";
   
 /* 
-
-
 import "./components/calendar/calendar-init.js";
 import chart01 from "./components/charts/chart-01";
 import chart02 from "./components/charts/chart-02";
@@ -33,10 +29,8 @@ import basicTableFour from "./components/tables/basic-table-four";
 import basicTableOne from "./components/tables/basic-table-one";
 import basicTableThree from "./components/tables/basic-table-three";
 import basicTableTwo from "./components/tables/basic-table-two";
-import dropdown from "./components/ui/dropdown";
-import popover from "./components/ui/popover";
-import tooltip from "./components/ui/tooltip";
-*/ 
+*/
+
 // TailAdmin Theme Manager: reads from localStorage, falls back to dark
 (function () {
   var stored = localStorage.getItem("darkMode");

@@ -244,11 +244,11 @@ export const basicTableFourData = [
   {
     id: 2,
     creator: {
-      image: "./images/user/user-02.jpg",
+      image: "../../../images/plugme_logo.webp",
       name: "Wilson Gouse",
     },
     campaign: {
-      image: "./images/brand/brand-02.svg",
+      image: "../../../images/plugme_logo.webp",
       name: "Make Better Ideas...",
       type: "Ads campaign",
     },
@@ -270,7 +270,7 @@ export const basicTableFourData = [
   {
     id: 4,
     creator: {
-      image: "./images/user/user-04.jpg",
+      image: "../../../images/plugme_logo.webp",
       name: "Wilson Gouse",
     },
     campaign: {

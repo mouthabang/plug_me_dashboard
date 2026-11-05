@@ -1,77 +1,78 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
-  HostListener,
   inject,
   signal,
-  ViewChild,
+  viewChild,
 } from "@angular/core";
 import { LayoutService } from "../../services/layout.service";
 
 @Component({
-  imports: [],
   selector: "app-nav-bar",
-  styleUrl: "./nav-bar.scss",
   templateUrl: "./nav-bar.html",
+  styleUrl: "./nav-bar.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    "(window:keydown)": "onKeydown($event)",
+    "(window:resize)": "checkScreenSize()",
+  },
 })
 export class NavBar {
-  layoutService = inject(LayoutService);
+  private layout = inject(LayoutService);
 
-  @ViewChild("searchInput")
-  searchInput!: ElementRef<HTMLInputElement>;
+  readonly searchInput = viewChild<ElementRef<HTMLInputElement>>("searchInput");
 
-  isApplicationMenuOpen = this.layoutService.applicationMenuOpen;
+  readonly sidebarToggle = this.layout.sidebarToggle;
+  readonly applicationMenuOpen = this.layout.applicationMenuOpen;
+  readonly isMobile = signal(window.innerWidth < 1280);
 
-  sidebarToggle = this.layoutService.sidebarToggle;
+  readonly notificationsOpen = signal(false);
+  readonly notifying = signal(true);
+  readonly userMenuOpen = signal(false);
 
-  isMobile = signal(false);
-
-  constructor() {
-    this.checkScreenSize();
+  toggleSidebar() {
+    this.layout.toggleSidebar();
+  }
+  toggleApplicationMenu() {
+    this.layout.toggleApplicationMenu();
   }
 
-  toggleSidebar(): void {
-    this.layoutService.toggleSidebar();
+  focusSearch() {
+    this.searchInput()?.nativeElement.focus();
   }
 
-  toggleApplicationMenu(): void {
-    this.layoutService.toggleApplicationMenu();
-  }
-
-  focusSearch(): void {
-    this.searchInput?.nativeElement.focus();
-  }
-
-  onSearchSubmit(event: Event): void {
+  onSearchSubmit(event: Event) {
     event.preventDefault();
-
-    const searchTerm = this.searchInput.nativeElement.value.trim();
-
-    if (searchTerm) {
-      console.log("Search:", searchTerm);
-
-      // Implement your dashboard search functionality here.
-    }
+    const term = this.searchInput()?.nativeElement.value.trim();
+    if (term) console.log("Search:", term);
   }
 
-  @HostListener("window:keydown", ["$event"])
-  handleKeyboardShortcut(event: KeyboardEvent): void {
+  toggleNotifications() {
+    this.notificationsOpen.update((v) => !v);
+    if (this.notificationsOpen()) this.notifying.set(false);
+    this.userMenuOpen.set(false);
+  }
+
+  toggleUserMenu() {
+    this.userMenuOpen.update((v) => !v);
+    this.notificationsOpen.set(false);
+  }
+
+  onKeydown(event: KeyboardEvent) {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
       this.focusSearch();
     }
-
     if (event.key === "Escape") {
-      this.layoutService.closeApplicationMenu();
+      this.notificationsOpen.set(false);
+      this.userMenuOpen.set(false);
+      this.layout.closeApplicationMenu();
     }
   }
 
-  @HostListener("window:resize")
-  checkScreenSize(): void {
+  checkScreenSize() {
     this.isMobile.set(window.innerWidth < 1280);
-
-    if (!this.isMobile()) {
-      this.layoutService.closeApplicationMenu();
-    }
+    if (!this.isMobile()) this.layout.closeApplicationMenu();
   }
 }

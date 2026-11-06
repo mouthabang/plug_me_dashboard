@@ -14,7 +14,6 @@ import { LayoutService } from "../../services/layout.service";
   styleUrl: "./nav-bar.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    "(window:keydown)": "onKeydown($event)",
     "(window:resize)": "checkScreenSize()",
   },
 })
@@ -38,16 +37,6 @@ export class NavBar {
     this.layout.toggleApplicationMenu();
   }
 
-  focusSearch() {
-    this.searchInput()?.nativeElement.focus();
-  }
-
-  onSearchSubmit(event: Event) {
-    event.preventDefault();
-    const term = this.searchInput()?.nativeElement.value.trim();
-    if (term) console.log("Search:", term);
-  }
-
   toggleNotifications() {
     this.notificationsOpen.update((v) => !v);
     if (this.notificationsOpen()) this.notifying.set(false);
@@ -57,18 +46,6 @@ export class NavBar {
   toggleUserMenu() {
     this.userMenuOpen.update((v) => !v);
     this.notificationsOpen.set(false);
-  }
-
-  onKeydown(event: KeyboardEvent) {
-    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-      event.preventDefault();
-      this.focusSearch();
-    }
-    if (event.key === "Escape") {
-      this.notificationsOpen.set(false);
-      this.userMenuOpen.set(false);
-      this.layout.closeApplicationMenu();
-    }
   }
 
   checkScreenSize() {

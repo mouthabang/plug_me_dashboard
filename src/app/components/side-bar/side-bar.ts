@@ -27,7 +27,7 @@ export class SideBar {
 
   @HostListener("window:resize")
   onResize(): void {
-    if (window.innerWidth >= 1280) {
+    if (window.innerWidth < 1280 && this.sidebarToggle()) {
       this.closeSidebar();
     }
   }

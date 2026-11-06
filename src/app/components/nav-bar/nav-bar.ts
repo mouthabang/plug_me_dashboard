@@ -21,8 +21,6 @@ import { LayoutService } from "../../services/layout.service";
 export class NavBar {
   private layout = inject(LayoutService);
 
-  readonly searchInput = viewChild<ElementRef<HTMLInputElement>>("searchInput");
-
   readonly sidebarToggle = this.layout.sidebarToggle;
   readonly applicationMenuOpen = this.layout.applicationMenuOpen;
   readonly isMobile = signal(window.innerWidth < 1280);

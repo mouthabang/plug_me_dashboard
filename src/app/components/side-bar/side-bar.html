@@ -32,9 +32,17 @@
         class="h-10 w-10 shrink-0 object-contain"
         [src]="sidebarToggle()
         ? '/assets/images/favicon.ico.webp'
-        : '/assets/images/plugme_logo.webp'"
+        : '/assets/images/favicon.ico.webp'"
         [class.w-10]="sidebarToggle()"
         [class.w-auto]="!sidebarToggle()"
+        alt="Plug Me logo"
+      />
+
+      <img
+        class="h-10 shrink-0 object-contain"
+        [class.xl:w-10]="sidebarToggle()"
+        [class.w-auto]="!sidebarToggle()"
+        [src]="sidebarToggle() ? '/assets/images/favicon.ico.webp' : '/assets/images/favicon.ico.webp'"
         alt="Plug Me logo"
       />
 

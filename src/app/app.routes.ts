@@ -2,16 +2,16 @@ import { Routes } from "@angular/router";
 
 export const routes: Routes = [
   {
-    path: "",
-    loadComponent: () =>
-      import("./pages/auth/log-in/log-in").then((m) => m.LogIn),
+    path: "signin",
+    loadComponent: () => import("./pages/log-in/log-in").then((m) => m.LogIn),
     title: "Sign In",
   },
 
   {
-    path: "",
+    path: "dashboard",
     loadComponent: () =>
       import("./pages/dashboard/dashboard").then((m) => m.Dashboard),
+    title: "Dashboard",
   },
 
   {

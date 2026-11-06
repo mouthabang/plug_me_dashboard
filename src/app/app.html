@@ -1,14 +1,5 @@
-<div class="flex h-screen overflow-hidden">
-  @if(1 == 1) {
-  <app-side-bar></app-side-bar>
-  }
-  <div class="relative flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
-    <main id="main-content">
-      @if(1 == 1) {
-      <app-nav-bar></app-nav-bar>
-      }
-    </main>
-  </div>
-</div>
-
+@if(layoutSerive.showShell()) {
+<app-layout></app-layout>
+}@else {
 <router-outlet />
+}

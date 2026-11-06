@@ -52,17 +52,18 @@
       </button>
 
       <!-- Mobile Logo -->
-      <a href="/" class="xl:hidden">
+      <!-- Mobile Logo -->
+      <a href="/" class="flex items-center gap-2 xl:hidden">
         <img
-          class="h-8 w-38.5 dark:hidden"
-          src="assets/images/plugme_slogan.jpg"
+          class="h-8 w-8 shrink-0 object-contain"
+          src="/assets/images/favicon.ico.webp"
           alt="PlugMe Logo"
         />
-        <img
-          class="hidden h-8 w-38.5 dark:block"
-          src="assets/images/plugme_slogan.jpg"
-          alt="PlugMe Logo"
-        />
+        <span
+          class="text-base font- text-gray-900 whitespace-nowrap dark:text-white"
+        >
+          Plug Me
+        </span>
       </a>
 
       <!-- Mobile Application Menu Toggle -->
@@ -99,7 +100,7 @@
     >
       <div class="flex items-center gap-2 2xsm:gap-3">
         <!-- Notification Dropdown -->
-        <div class="relative">
+        <div class="relative" data-dropdown>
           <button
             type="button"
             (click)="toggleNotifications()"
@@ -137,7 +138,7 @@
 
           @if (notificationsOpen()) {
           <div
-            class="fixed z-50 flex w-87.5 max-w-[calc(100vw-1rem)] flex-col gap-1 overflow-hidden rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg outline-none sm:w-90.25 dark:border-gray-800 dark:bg-[#1E2635]"
+            class="fixed left-1/2 top-16 z-50 flex w-[calc(100vw-1.5rem)] max-w-sm -translate-x-1/2 flex-col gap-1 overflow-hidden rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg outline-none sm:absolute sm:left-auto sm:top-full sm:right-0 sm:mt-2 sm:w-80 sm:max-w-none sm:translate-x-0 dark:border-gray-800 dark:bg-[#1E2635]"
           >
             <div class="flex items-center justify-between pb-3">
               <h5
@@ -180,7 +181,7 @@
               >
                 <div class="relative flex size-10 shrink-0 select-none">
                   <img
-                    src="/assets/images/plugme_logo.webp"
+                    src="/assets/images/favicon.ico.webp"
                     alt="Terry Franci"
                     class="aspect-square size-full rounded-full object-cover"
                   />
@@ -233,7 +234,7 @@
               >
                 <div class="relative flex size-10 shrink-0 select-none">
                   <img
-                    src="/assets/images/plugme_logo.webp"
+                    src="/assets/images/favicon.ico.webp"
                     alt="Alena Franci"
                     class="aspect-square size-full rounded-full object-cover"
                   />
@@ -286,7 +287,7 @@
               >
                 <div class="relative flex size-10 shrink-0 select-none">
                   <img
-                    src="/assets/images/plugme_logo.webp"
+                    src="/assets/images/favicon.ico.webp"
                     alt="Jocelyn Kenter"
                     class="aspect-square size-full rounded-full object-cover"
                   />
@@ -339,7 +340,7 @@
               >
                 <div class="relative flex size-10 shrink-0 select-none">
                   <img
-                    src="/assets/images/plugme_logo.webp"
+                    src="/assets/images/favicon.ico.webp"
                     alt="Brandon Philips"
                     class="aspect-square size-full rounded-full object-cover"
                   />
@@ -396,7 +397,7 @@
       </div>
 
       <!-- User Dropdown -->
-      <div class="relative">
+      <div class="relative" data-dropdown>
         <button
           type="button"
           aria-haspopup="menu"
@@ -407,13 +408,9 @@
           class="dropdown-toggle flex items-center text-gray-700 dark:text-gray-400"
         >
           <span class="me-3 h-11 w-11 overflow-hidden rounded-lg">
-            <img
-              src="/assets/images/plugme_logo.webp"
-              alt="User"
-              class="size-11"
-            />
+            <img src="/assets/images/user.png" alt="User" class="size-11" />
           </span>
-          <span class="me-1 block text-sm font-medium">Musharof</span>
+          <span class="me-1 block text-sm font-medium">Joseph</span>
           <svg
             class="size-5 text-gray-500 transition-transform duration-200 dark:text-gray-400"
             [class.rotate-180]="userMenuOpen()"
@@ -440,15 +437,15 @@
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="user-menu-button"
-          class="fixed z-50 flex w-65 flex-col gap-1 rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg outline-none dark:border-gray-800 dark:bg-[#1E2635]"
+          class="absolute right-0 top-full z-50 mt-2 flex w-64 flex-col gap-1 rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg outline-none dark:border-gray-800 dark:bg-[#1E2635]"
         >
           <div class="px-3 py-2">
             <span
               class="block text-sm font-medium text-gray-700 dark:text-gray-400"
-              >Musharof Chowdhury</span
+              >Joseph Maluleka</span
             >
             <span class="mt-0.5 block text-xs text-gray-500 dark:text-gray-400"
-              >randomuser@pimjo.com</span
+              >joseph.user@plugme.co.ls</span
             >
           </div>
 
@@ -509,63 +506,6 @@
               />
             </svg>
             <span>Account settings</span>
-          </a>
-
-          <!-- Support -->
-          <a
-            href="profile.html"
-            role="menuitem"
-            class="group/dropdown-menu-item relative flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 outline-hidden transition-colors duration-200 select-none hover:bg-gray-100 hover:text-gray-700 focus:bg-gray-100 focus:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300 dark:focus:bg-white/5 dark:focus:text-gray-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              class="size-6 text-gray-500 group-hover/dropdown-menu-item:text-gray-700 dark:text-gray-400 dark:group-hover/dropdown-menu-item:text-gray-300"
-            >
-              <path
-                d="M12 8.67h0"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12 11.215v4.224M21.25 12a9.25 9.25 0 11-18.5 0 9.25 9.25 0 0118.5 0z"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <span>Support</span>
-          </a>
-
-          <!-- Language (simplified - no nested submenu) -->
-          <a
-            href="javascript:void(0)"
-            role="menuitem"
-            class="group/dropdown-menu-item relative flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 outline-hidden transition-colors duration-200 select-none hover:bg-gray-100 hover:text-gray-700 focus:bg-gray-100 focus:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300 dark:focus:bg-white/5 dark:focus:text-gray-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              class="size-6 text-gray-500 group-hover/dropdown-menu-item:text-gray-700 dark:text-gray-400 dark:group-hover/dropdown-menu-item:text-gray-300"
-            >
-              <path
-                d="M12.001 2.75a9.25 9.25 0 019.25 9.25A9.25 9.25 0 0112 21.25m0-18.5A9.25 9.25 0 002.751 12a9.25 9.25 0 009.25 9.25m0-18.5c2.209 0 4 4.141 4 9.25 0 5.107-1.791 9.25-4 9.25m0-18.5c-2.209 0-3.999 4.141-3.999 9.25 0 5.107 1.79 9.25 3.999 9.25M3.246 9h17.508M3.246 15h17.508"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <span>Language</span>
           </a>
 
           <div class="-mx-3 my-1.5 h-px bg-gray-100 dark:bg-gray-700"></div>

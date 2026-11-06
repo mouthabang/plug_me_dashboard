@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostListener,
   inject,
   signal,
   viewChild,
@@ -51,5 +52,24 @@ export class NavBar {
   checkScreenSize() {
     this.isMobile.set(window.innerWidth < 1280);
     if (!this.isMobile()) this.layout.closeApplicationMenu();
+  }
+
+  @HostListener("document:click", ["$event"])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    // If the click is inside a dropdown wrapper, let the button toggle handle it
+    if (target.closest("[data-dropdown]")) {
+      return;
+    }
+
+    this.notificationsOpen.set(false);
+    this.userMenuOpen.set(false);
+  }
+
+  @HostListener("document:keydown.escape")
+  onEscape() {
+    this.notificationsOpen.set(false);
+    this.userMenuOpen.set(false);
   }
 }
